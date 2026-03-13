@@ -1,0 +1,22 @@
+environment: qa
+
+settings:
+  implicit_wait: 5
+  explicit_wait: 15
+  screenshot_on_failure: true
+
+browser:
+  name: chrome
+  headless: false
+  maximize: true
+
+environments:
+  qa:
+    base_url: https://demowebshop.tricentis.com
+    username: hepom13651@devlug.com
+    password: BosaisLosa
+
+  staging:
+    base_url: https://staging.demowebshop.com
+    username: staging@test.com
+    password: Password123

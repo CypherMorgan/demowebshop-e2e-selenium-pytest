@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# Pytest
+.pytest_cache/
+
+# Logs
+*.log
+reports/logs/
+
+# Screenshots
+reports/screenshots/
+
+# Allure results
+reports/allure-results/
+reports/allure-report/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+
+# Coverage
+.coverage
+htmlcov/
