@@ -1,8 +1,13 @@
 # Demo Web Shop E2E Automation Framework
 
-Production-style Selenium automation framework using **Python, PyTest, and Page Object Model**.
+![Python](https://img.shields.io/badge/python-3.x-blue)
+![Selenium](https://img.shields.io/badge/selenium-automation-green)
+![PyTest](https://img.shields.io/badge/pytest-testing-orange)
+![CI](https://github.com/CypherMorgan/selenium-python-blazedemo-e2e/actions/workflows/tests.yml/badge.svg)
 
-This project demonstrates a **scalable test automation architecture** for end-to-end testing of the Demo Web Shop application.
+Production-style Selenium automation framework using **Python, PyTest, and Page Object Model**, built with **CI/CD integration and scalable architecture**.
+
+This project demonstrates a **real-world, production-ready test automation framework** for end-to-end testing of the Demo Web Shop application.
 
 ---
 
@@ -11,16 +16,18 @@ This project demonstrates a **scalable test automation architecture** for end-to
 * **Python**
 * **Selenium WebDriver**
 * **PyTest**
+* **PyTest-xdist (parallel execution)**
+* **PyTest HTML Reports**
 * **Allure Reporting**
 * **Page Object Model (POM)**
-* **WebDriver Manager**
+* **GitHub Actions (CI/CD)**
 * **Logging Framework**
 
 ---
 
 # 🧱 Framework Architecture
 
-The framework follows a layered design for maintainability and scalability.
+The framework follows a layered, scalable design:
 
 ```
 Tests
@@ -32,13 +39,14 @@ Core Framework (Driver, Waits, Utilities)
 Configuration + Test Data
 ```
 
-Key design principles:
+### Design Principles
 
 * Page Object Model (POM)
 * Separation of concerns
 * Reusable utilities
-* Config-driven execution
-* Rich reporting
+* Environment-driven execution
+* CI/CD ready
+* Flaky-test resistant design
 
 ---
 
@@ -46,6 +54,9 @@ Key design principles:
 
 ```
 demowebshop-e2e-selenium-pytest
+│
+├── .github/workflows
+│   └── tests.yml
 │
 ├── config
 │   ├── config.yaml
@@ -82,6 +93,9 @@ demowebshop-e2e-selenium-pytest
 │   └── data_loader.py
 │
 ├── reports
+│   ├── logs/
+│   ├── screenshots/
+│   └── allure-results/
 │
 ├── conftest.py
 ├── pytest.ini
@@ -94,30 +108,36 @@ demowebshop-e2e-selenium-pytest
 # ⚙️ Features
 
 * Page Object Model implementation
-* Config-driven environment setup
-* Centralized driver factory
+* Environment-driven configuration (YAML + environment variables)
+* CI/CD integration with GitHub Actions
+* Parallel test execution (`pytest-xdist`)
+* Centralized driver factory (CI-safe)
 * Logging system
-* Screenshot capture on test failure
-* Allure test reporting
-* Reusable test utilities
-* Clean modular architecture
+* Screenshot capture on failure
+* HTML + Allure reporting
+* Retry mechanism for flaky tests
+* Stable execution in headless environments
 
 ---
 
 # 🧪 Automated Test Scenarios
 
-### Login Test
+### 🔐 Login Test
 
 * Navigate to login page
 * Enter valid credentials
 * Verify successful login
 
-### User Registration
+---
+
+### 🧾 User Registration
 
 * Register new user with random email
 * Verify registration success message
 
-### Purchase Flow (E2E)
+---
+
+### 🛒 Purchase Flow (E2E)
 
 * Login
 * Search product
@@ -132,19 +152,19 @@ demowebshop-e2e-selenium-pytest
 
 Clone the repository:
 
-```
+```bash
 git clone https://github.com/CypherMorgan/demowebshop-e2e-selenium-pytest.git
 ```
 
 Navigate into the project:
 
-```
+```bash
 cd demowebshop-e2e-selenium-pytest
 ```
 
 Install dependencies:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
@@ -152,77 +172,96 @@ pip install -r requirements.txt
 
 # ▶️ Run Tests
 
-Execute all tests:
+### Run all tests:
 
-```
+```bash
 pytest
 ```
 
-Run tests with Allure reporting:
+### Run in parallel:
 
+```bash
+pytest -n 2
 ```
+
+### Run with HTML report:
+
+```bash
+pytest --html=reports/report.html --self-contained-html
+```
+
+### Run with Allure:
+
+```bash
 pytest --alluredir=reports/allure-results
 ```
 
 ---
 
-# 📊 View Allure Report
+# 📊 Reporting
 
-Generate and open the report:
+## HTML Report
+
+Generated at:
 
 ```
+reports/report.html
+```
+
+## Allure Report
+
+Generate & view:
+
+```bash
 allure serve reports/allure-results
 ```
 
-The report will include:
+Includes:
 
-* test execution results
-* step breakdown
-* screenshots on failure
-* execution timeline
+* Execution steps
+* Screenshots
+* Timeline
+* Test details
 
 ---
 
 # 📝 Logging
 
-Execution logs are saved in:
+Logs are saved in:
 
 ```
-reports/logs/test.log
+reports/logs/
 ```
 
-Logs include:
+Includes:
 
-* test start/end
-* navigation actions
-* login attempts
-* validation steps
+* Test execution flow
+* Actions performed
+* Failures and errors
 
 ---
 
 # 📷 Screenshots
 
-Screenshots are automatically captured on test failures.
-
-Location:
+Captured automatically on failure:
 
 ```
 reports/screenshots/
 ```
 
-They are also attached to the Allure report.
-
 ---
 
-# 🧩 Configuration
+# ⚙️ Configuration
 
-Environment settings are defined in:
+Main config file:
 
 ```
 config/config.yaml
 ```
 
-Example:
+Supports **environment + CI overrides**
+
+### Example:
 
 ```yaml
 environment: qa
@@ -240,16 +279,66 @@ environments:
 
 ---
 
+# 🔐 Environment Variables (CI/CD)
+
+The framework supports environment-based overrides:
+
+| Variable        | Purpose              |
+| --------------- | -------------------- |
+| `BASE_URL`      | Application URL      |
+| `TEST_USERNAME` | Login username       |
+| `TEST_PASSWORD` | Login password       |
+| `HEADLESS`      | Run browser headless |
+| `BROWSER`       | Browser type         |
+
+---
+
+# ⚡ CI/CD (GitHub Actions)
+
+This project includes a fully working CI pipeline.
+
+### 🚀 Features:
+
+* Runs on every push & PR
+* Parallel execution
+* Headless browser testing
+* HTML report generation
+* Artifact upload (logs, screenshots)
+* GitHub Pages deployment (report hosting)
+
+---
+
+# Test Reports
+
+## Live Report (GitHub Pages)
+👉 https://cyphermorgan.github.io/demowebshop-e2e-selenium-pytest/
+
+## Report Preview
+![Report](reportsscreenshots/report-preview.png)
+
+## CI Artifacts
+Reports are also available in GitHub Actions:
+
+Actions → Latest Run → Artifacts → report.html
+
+---
+
 # 📌 Future Improvements
 
-* Parallel execution using `pytest-xdist`
-* CI/CD integration (GitHub Actions)
-* Dockerized Selenium execution
-* Selenium Grid support
-* API + UI test integration
+* Multi-browser execution (Chrome + Firefox)
+* Dockerized test execution
+* Selenium Grid integration
+* API + UI combined testing
+* Allure report history tracking
+* Test tagging (smoke/regression)
 
 ---
 
 # 👨‍💻 Author
 
-Automation framework built as a **portfolio project demonstrating QA automation architecture and best practices**.
+Automation framework built as a **real-world QA portfolio project**, demonstrating:
+
+* Test automation architecture
+* CI/CD integration
+* Scalable framework design
+* Stability and flakiness handling
