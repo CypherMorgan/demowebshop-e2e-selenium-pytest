@@ -314,7 +314,7 @@ This project includes a fully working CI pipeline.
 👉 https://cyphermorgan.github.io/demowebshop-e2e-selenium-pytest/
 
 ## Report Preview
-![Report](reportsscreenshots/report-preview.png)
+![Report](reports/report-preview.png)
 
 ## CI Artifacts
 Reports are also available in GitHub Actions:
