@@ -1,0 +1,7 @@
+INFO     conftest:conftest.py:18 Starting browser
+INFO     conftest:conftest.py:24 Opening URL: https://demowebshop.tricentis.com
+INFO     test_login:test_login.py:16 Starting login test
+INFO     test_login:test_login.py:20 Navigating to login page
+INFO     test_login:test_login.py:28 Logging in with user: 
+INFO     test_login:test_login.py:32 Verifying login success
+INFO     conftest:conftest.py:31 Closing browser

@@ -1,0 +1,3 @@
+INFO     conftest:conftest.py:18 Starting browser
+INFO     conftest:conftest.py:24 Opening URL: https://demowebshop.tricentis.com
+INFO     conftest:conftest.py:31 Closing browser
