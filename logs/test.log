@@ -1,15 +1,15 @@
-2026-03-28 14:10:08,058 | INFO | conftest | Starting browser
-2026-03-28 14:10:08,058 | INFO | conftest | Starting browser
-2026-03-28 14:10:17,578 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:10:17,581 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:10:20,087 | INFO | test_login | Starting login test
-2026-03-28 14:10:20,087 | INFO | test_login | Navigating to login page
-2026-03-28 14:10:20,514 | INFO | test_login | Logging in with user: 
-2026-03-28 14:10:21,062 | INFO | test_login | Verifying login success
-2026-03-28 14:10:24,530 | ERROR | conftest | Test failed: test_purchase_flow
-2026-03-28 14:10:24,532 | INFO | conftest | Closing browser
-2026-03-28 14:10:37,242 | ERROR | conftest | Test failed: test_login
-2026-03-28 14:10:37,243 | INFO | conftest | Closing browser
-2026-03-28 14:10:37,316 | INFO | conftest | Starting browser
-2026-03-28 14:10:37,590 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:10:42,024 | INFO | conftest | Closing browser
+2026-03-28 14:20:14,587 | INFO | conftest | Starting browser
+2026-03-28 14:20:14,587 | INFO | conftest | Starting browser
+2026-03-28 14:20:30,693 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:20:30,693 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:20:32,607 | INFO | test_login | Starting login test
+2026-03-28 14:20:32,608 | INFO | test_login | Navigating to login page
+2026-03-28 14:20:33,023 | INFO | test_login | Logging in with user: hepom13651@devlug.com
+2026-03-28 14:20:33,942 | INFO | test_login | Verifying login success
+2026-03-28 14:20:33,989 | INFO | test_login | Login test passed
+2026-03-28 14:20:33,990 | INFO | conftest | Closing browser
+2026-03-28 14:20:34,060 | INFO | conftest | Starting browser
+2026-03-28 14:20:34,370 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:20:34,959 | ERROR | conftest | Test failed: test_purchase_flow
+2026-03-28 14:20:34,967 | INFO | conftest | Closing browser
+2026-03-28 14:20:37,566 | INFO | conftest | Closing browser
