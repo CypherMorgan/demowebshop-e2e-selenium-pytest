@@ -10,18 +10,23 @@ class SearchPage(BasePage):
 
     def open_first_product(self):
 
-        for _ in range(2):
+        for _ in range(3):
             try:
-                self.wait.until(EC.presence_of_element_located(self.PRODUCT_LINK))
-
-                element = self.wait.until(
-                    EC.element_to_be_clickable(self.PRODUCT_LINK)
+                elements = self.wait.until(
+                    EC.presence_of_all_elements_located(self.PRODUCT_LINK)
                 )
 
-                element.click()
+                element = elements[0]
+
+                self.driver.execute_script(
+                    "arguments[0].scrollIntoView({block: 'center'});", element
+                )
+
+                self.wait.until(EC.visibility_of(element))
+
+                self.driver.execute_script("arguments[0].click();", element)
 
                 self.wait.until(EC.url_contains("product"))
-
                 return
 
             except (StaleElementReferenceException, TimeoutException):
