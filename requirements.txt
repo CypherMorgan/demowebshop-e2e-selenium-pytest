@@ -1,5 +1,7 @@
 selenium
 pytest
+pytest-xdist
+pytest-html
+pytest-rerunfailures
 pyyaml
-webdriver-manager
 allure-pytest

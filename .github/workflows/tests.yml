@@ -1,0 +1,70 @@
+name: Selenium E2E Tests
+
+permissions:
+  contents: write
+
+env:
+  BASE_URL: ${{ secrets.BASE_URL }}
+  TEST_USERNAME: ${{ secrets.USERNAME }}
+  TEST_PASSWORD: ${{ secrets.PASSWORD }}
+  HEADLESS: true
+  BROWSER: chrome
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install pytest-xdist pytest-html pytest-rerunfailures
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run tests
+        run: |
+          pytest -n 2 --headless --html=reports/report.html --self-contained-html
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: reports/report.html
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: logs/
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots/
+        
+      - name: Prepare report for Pages
+        run: |
+          cp reports/report.html reports/index.html
+
+      - name: Deploy report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports

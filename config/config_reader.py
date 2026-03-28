@@ -21,33 +21,38 @@ class ConfigReader:
     def get_env_config(cls):
 
         config = cls.load_config()
-        env = config["environment"]
+        env = os.getenv("TEST_ENV", config["environment"])
         return config["environments"][env]
 
     @classmethod
     def get_base_url(cls):
-        return cls.get_env_config()["base_url"]
+        return os.getenv("BASE_URL", cls.get_env_config()["base_url"])
 
     @classmethod
     def get_username(cls):
-        return cls.get_env_config()["username"]
+        return os.getenv("TEST_USERNAME", cls.get_env_config()["username"])
 
     @classmethod
     def get_password(cls):
-        return cls.get_env_config()["password"]
+        return os.getenv("TEST_PASSWORD", cls.get_env_config()["password"])
 
     @classmethod
     def get_browser(cls):
-        return cls.load_config()["browser"]["name"]
+        return os.getenv("BROWSER", cls.load_config()["browser"]["name"]).lower()
 
     @classmethod
     def is_headless(cls):
+        headless_env = os.getenv("HEADLESS")
+
+        if headless_env is not None:
+            return headless_env.lower() == "true"
+
         return cls.load_config()["browser"]["headless"]
 
     @classmethod
     def get_implicit_wait(cls):
-        return cls.load_config()["settings"]["implicit_wait"]
+        return int(os.getenv("IMPLICIT_WAIT", cls.load_config()["settings"]["implicit_wait"]))
 
     @classmethod
     def get_explicit_wait(cls):
-        return cls.load_config()["settings"]["explicit_wait"]
+        return int(os.getenv("EXPLICIT_WAIT", cls.load_config()["settings"]["explicit_wait"]))

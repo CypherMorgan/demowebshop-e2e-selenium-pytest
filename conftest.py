@@ -12,21 +12,24 @@ logger = get_logger(__name__)
 @pytest.fixture(scope="function")
 def driver():
 
-    logger.info("Starting browser")
+    driver = None
 
-    driver = DriverFactory.get_driver()
+    try:
+        logger.info("Starting browser")
 
-    base_url = ConfigReader.get_base_url()
+        driver = DriverFactory.get_driver()
 
-    logger.info(f"Opening URL: {base_url}")
+        base_url = ConfigReader.get_base_url()
 
-    driver.get(base_url)
+        logger.info(f"Opening URL: {base_url}")
+        driver.get(base_url)
 
-    yield driver
+        yield driver
 
-    logger.info("Closing browser")
-
-    driver.quit()
+    finally:
+        if driver:
+            logger.info("Closing browser")
+            driver.quit()
 
 
 @pytest.hookimpl(hookwrapper=True)
@@ -37,8 +40,12 @@ def pytest_runtest_makereport(item, call):
 
     if rep.when == "call" and rep.failed:
 
-        driver = item.funcargs["driver"]
+        driver = item.funcargs.get("driver", None)
 
-        take_screenshot(driver, item.name)
+        if driver:
+            try:
+                take_screenshot(driver, item.name)
+            except Exception as e:
+                logger.error(f"Screenshot failed: {e}")
 
         logger.error(f"Test failed: {item.name}")
