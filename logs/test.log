@@ -1,14 +1,14 @@
-2026-03-28 14:29:11,515 | INFO | conftest | Starting browser
-2026-03-28 14:29:11,515 | INFO | conftest | Starting browser
-2026-03-28 14:29:19,991 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:29:19,992 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:29:22,380 | INFO | test_login | Starting login test
-2026-03-28 14:29:22,381 | INFO | test_login | Navigating to login page
-2026-03-28 14:29:22,801 | INFO | test_login | Logging in with user: hepom13651@devlug.com
-2026-03-28 14:29:23,869 | INFO | test_login | Verifying login success
-2026-03-28 14:29:23,899 | INFO | test_login | Login test passed
-2026-03-28 14:29:23,900 | INFO | conftest | Closing browser
-2026-03-28 14:29:23,972 | INFO | conftest | Starting browser
-2026-03-28 14:29:24,298 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:29:28,132 | INFO | conftest | Closing browser
-2026-03-28 14:29:28,694 | INFO | conftest | Closing browser
+2026-03-28 14:42:24,076 | INFO | conftest | Starting browser
+2026-03-28 14:42:24,076 | INFO | conftest | Starting browser
+2026-03-28 14:42:31,992 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:42:31,999 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:42:34,167 | INFO | test_login | Starting login test
+2026-03-28 14:42:34,168 | INFO | test_login | Navigating to login page
+2026-03-28 14:42:34,566 | INFO | test_login | Logging in with user: hepom13651@devlug.com
+2026-03-28 14:42:35,338 | INFO | test_login | Verifying login success
+2026-03-28 14:42:35,478 | INFO | test_login | Login test passed
+2026-03-28 14:42:35,479 | INFO | conftest | Closing browser
+2026-03-28 14:42:35,548 | INFO | conftest | Starting browser
+2026-03-28 14:42:35,844 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:42:38,568 | INFO | conftest | Closing browser
+2026-03-28 14:42:39,584 | INFO | conftest | Closing browser
