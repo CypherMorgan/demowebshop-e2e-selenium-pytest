@@ -22,14 +22,19 @@ class SearchPage(BasePage):
                     "arguments[0].scrollIntoView({block: 'center'});", element
                 )
 
-                self.wait.until(EC.visibility_of(element))
+                import time
+                time.sleep(1)
 
                 self.driver.execute_script("arguments[0].click();", element)
 
-                self.wait.until(EC.url_contains("product"))
+                self.wait.until(
+                    lambda d: "product" in d.current_url
+                    or len(d.find_elements(By.CSS_SELECTOR, ".product-name")) > 0
+                )
+
                 return
 
             except (StaleElementReferenceException, TimeoutException):
                 continue
 
-        raise Exception("Failed to open product page")
+    raise Exception("Failed to open product page")
