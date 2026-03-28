@@ -19,17 +19,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        browser: [chrome, firefox]
-
-    env:
-      BASE_URL: ${{ secrets.BASE_URL }}
-      TEST_USERNAME: ${{ secrets.USERNAME }}
-      TEST_PASSWORD: ${{ secrets.PASSWORD }}
-      HEADLESS: true
-      BROWSER: ${{ matrix.browser }}
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -45,37 +34,37 @@ jobs:
           pip install pytest-xdist pytest-html pytest-rerunfailures
 
       - name: Install Chrome
-        if: matrix.browser == 'chrome'
         uses: browser-actions/setup-chrome@v1
-
-      - name: Install Firefox
-        if: matrix.browser == 'firefox'
-        uses: browser-actions/setup-firefox@v1
-
-      - name: Create folders
-        run: mkdir -p reports logs screenshots
 
       - name: Run tests
         run: |
-          pytest -n 2 --html=reports/report-${{ matrix.browser }}.html --self-contained-html
+          pytest -n 2 --html=reports/report.html --self-contained-html
 
       - name: Upload report
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: report-${{ matrix.browser }}
-          path: reports/
+          name: test-report
+          path: reports/report.html
 
       - name: Upload logs
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: logs-${{ matrix.browser }}
+          name: logs
           path: logs/
 
       - name: Upload screenshots
-        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: screenshots-${{ matrix.browser }}
+          name: screenshots
           path: screenshots/
+        
+      - name: Prepare report for Pages
+        run: |
+          cp reports/report.html reports/index.html
+
+      - name: Deploy report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports

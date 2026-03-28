@@ -1,4 +1,7 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.firefox.service import Service as FirefoxService
+
 from config.config_reader import ConfigReader
 import os
 
@@ -32,9 +35,6 @@ class DriverFactory:
 
             if headless or is_ci:
                 options.add_argument("--headless")
-
-            options.add_argument("--width=1920")
-            options.add_argument("--height=1080")
 
             driver = webdriver.Firefox(options=options)
 
