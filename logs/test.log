@@ -1,15 +1,14 @@
-2026-03-28 14:20:14,587 | INFO | conftest | Starting browser
-2026-03-28 14:20:14,587 | INFO | conftest | Starting browser
-2026-03-28 14:20:30,693 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:20:30,693 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:20:32,607 | INFO | test_login | Starting login test
-2026-03-28 14:20:32,608 | INFO | test_login | Navigating to login page
-2026-03-28 14:20:33,023 | INFO | test_login | Logging in with user: hepom13651@devlug.com
-2026-03-28 14:20:33,942 | INFO | test_login | Verifying login success
-2026-03-28 14:20:33,989 | INFO | test_login | Login test passed
-2026-03-28 14:20:33,990 | INFO | conftest | Closing browser
-2026-03-28 14:20:34,060 | INFO | conftest | Starting browser
-2026-03-28 14:20:34,370 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-28 14:20:34,959 | ERROR | conftest | Test failed: test_purchase_flow
-2026-03-28 14:20:34,967 | INFO | conftest | Closing browser
-2026-03-28 14:20:37,566 | INFO | conftest | Closing browser
+2026-03-28 14:29:11,515 | INFO | conftest | Starting browser
+2026-03-28 14:29:11,515 | INFO | conftest | Starting browser
+2026-03-28 14:29:19,991 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:29:19,992 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:29:22,380 | INFO | test_login | Starting login test
+2026-03-28 14:29:22,381 | INFO | test_login | Navigating to login page
+2026-03-28 14:29:22,801 | INFO | test_login | Logging in with user: hepom13651@devlug.com
+2026-03-28 14:29:23,869 | INFO | test_login | Verifying login success
+2026-03-28 14:29:23,899 | INFO | test_login | Login test passed
+2026-03-28 14:29:23,900 | INFO | conftest | Closing browser
+2026-03-28 14:29:23,972 | INFO | conftest | Starting browser
+2026-03-28 14:29:24,298 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-28 14:29:28,132 | INFO | conftest | Closing browser
+2026-03-28 14:29:28,694 | INFO | conftest | Closing browser
