@@ -15,22 +15,18 @@ class ProductPage(BasePage):
 
     def add_to_cart(self):
 
+        self.wait.until(EC.url_contains("product"))
+
+        self.wait.until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
+
         for _ in range(2):
-
             try:
-                self.wait.until(EC.url_contains("product"))
-
-                self.wait.until(
-                    lambda d: d.execute_script("return document.readyState") == "complete"
-                )
-
                 element = self.wait.until(
-                    EC.presence_of_element_located(self.ADD_TO_CART_BUTTON)
-                )
-
-                self.wait.until(
                     EC.element_to_be_clickable(self.ADD_TO_CART_BUTTON)
-                ).click()
+                )
+                element.click()
 
                 try:
                     alert = self.driver.switch_to.alert
@@ -41,8 +37,8 @@ class ProductPage(BasePage):
 
                 return
 
-            except (TimeoutException, StaleElementReferenceException, UnexpectedAlertPresentException):
-                self.driver.refresh()
+            except (StaleElementReferenceException, TimeoutException):
+                continue
 
         raise Exception("Failed to add product to cart after retries")
 
