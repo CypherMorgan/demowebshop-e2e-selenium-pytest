@@ -3,9 +3,12 @@
 ![Python](https://img.shields.io/badge/python-3.x-blue)
 ![Selenium](https://img.shields.io/badge/selenium-automation-green)
 ![PyTest](https://img.shields.io/badge/pytest-testing-orange)
-![CI](https://github.com/CypherMorgan/selenium-python-blazedemo-e2e/actions/workflows/tests.yml/badge.svg)
+![CI](https://github.com/CypherMorgan/demowebshop-e2e-selenium-pytest/actions/workflows/tests.yml/badge.svg)
+![Browsers](https://img.shields.io/badge/browser-chrome%20%7C%20firefox-blue)
+[![Allure Report](https://img.shields.io/badge/view-report-blueviolet)](https://cyphermorgan.github.io/demowebshop-e2e-selenium-pytest/)
+![Tests](https://img.shields.io/badge/tests-e2e-green)
 
-Production-style Selenium automation framework using **Python, PyTest, and Page Object Model**, built with **CI/CD integration and scalable architecture**.
+Production-style Selenium automation framework using **Python, PyTest, and Page Object Model**, built with **CI/CD, multi-browser execution, and advanced Allure reporting**.
 
 This project demonstrates a **real-world, production-ready test automation framework** for end-to-end testing of the Demo Web Shop application.
 
@@ -18,7 +21,8 @@ This project demonstrates a **real-world, production-ready test automation frame
 * **PyTest**
 * **PyTest-xdist (parallel execution)**
 * **PyTest HTML Reports**
-* **Allure Reporting**
+* **Allure Reporting (merged + history)**
+* **PyTest-rerunfailures (flaky test handling)**
 * **Page Object Model (POM)**
 * **GitHub Actions (CI/CD)**
 * **Logging Framework**
@@ -109,6 +113,9 @@ demowebshop-e2e-selenium-pytest
 
 * Page Object Model implementation
 * Environment-driven configuration (YAML + environment variables)
+* Multi-browser execution (Chrome + Firefox)
+* Retry mechanism for flaky tests
+* Allure reporting with merged results and history
 * CI/CD integration with GitHub Actions
 * Parallel test execution (`pytest-xdist`)
 * Centralized driver factory (CI-safe)
@@ -140,9 +147,10 @@ demowebshop-e2e-selenium-pytest
 ### 🛒 Purchase Flow (E2E)
 
 * Login
+* Clear cart (state isolation)
 * Search product
 * Open product page
-* Add to cart
+* Add to cart (with retry handling)
 * Proceed to checkout
 * Verify checkout page
 
@@ -176,6 +184,13 @@ pip install -r requirements.txt
 
 ```bash
 pytest
+```
+
+### Run with browser:
+
+```bash
+pytest --browser=chrome
+pytest --browser=firefox
 ```
 
 ### Run in parallel:
@@ -218,9 +233,10 @@ allure serve reports/allure-results
 
 Includes:
 
+* Merged results (Chrome + Firefox)
+* Historical trends
 * Execution steps
 * Screenshots
-* Timeline
 * Test details
 
 ---
@@ -304,7 +320,10 @@ This project includes a fully working CI pipeline.
 * Headless browser testing
 * HTML report generation
 * Artifact upload (logs, screenshots)
-* GitHub Pages deployment (report hosting)
+* Multi-browser execution (matrix strategy)
+* Retry handling for flaky tests
+* Allure report generation and merge job
+* GitHub Pages deployment (live report)
 
 ---
 
@@ -325,11 +344,9 @@ Actions → Latest Run → Artifacts → report.html
 
 # 📌 Future Improvements
 
-* Multi-browser execution (Chrome + Firefox)
 * Dockerized test execution
 * Selenium Grid integration
 * API + UI combined testing
-* Allure report history tracking
 * Test tagging (smoke/regression)
 
 ---
