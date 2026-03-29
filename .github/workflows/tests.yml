@@ -74,12 +74,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y default-jre
-          wget -O allure.tgz https://github.com/allure-framework/allure2/releases/latest/download/allure.tgz
-          tar -xzf allure.tgz
+          wget https://github.com/allure-framework/allure2/releases/download/2.38.1/allure-2.38.1.tgz
+          tar -xzf allure-2.38.1.tgz
           sudo rm -rf /opt/allure
-          sudo mv allure-* /opt/allure
+          sudo mv allure-2.38.1 /opt/allure
           sudo ln -sf /opt/allure/bin/allure /usr/bin/allure
-          
+
       - name: Generate report
         run: |
           allure generate merged-results -o allure-report --clean
