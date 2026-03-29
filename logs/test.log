@@ -1,14 +1,14 @@
-2026-03-29 08:51:02,662 | INFO | conftest | Starting browser: firefox
-2026-03-29 08:51:02,662 | INFO | conftest | Starting browser: firefox
-2026-03-29 08:51:05,547 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-29 08:51:05,738 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-29 08:51:07,349 | INFO | test_login | Starting login test
-2026-03-29 08:51:07,349 | INFO | test_login | Navigating to login page
-2026-03-29 08:51:07,806 | INFO | test_login | Logging in with user: hepom13651@devlug.com
-2026-03-29 08:51:08,595 | INFO | test_login | Verifying login success
-2026-03-29 08:51:08,615 | INFO | test_login | Login test passed
-2026-03-29 08:51:08,616 | INFO | conftest | Closing browser
-2026-03-29 08:51:09,404 | INFO | conftest | Starting browser: firefox
-2026-03-29 08:51:10,985 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
-2026-03-29 08:51:13,609 | INFO | conftest | Closing browser
-2026-03-29 08:51:14,299 | INFO | conftest | Closing browser
+2026-03-29 08:51:01,918 | INFO | conftest | Starting browser: chrome
+2026-03-29 08:51:01,918 | INFO | conftest | Starting browser: chrome
+2026-03-29 08:51:12,879 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-29 08:51:12,880 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-29 08:51:14,518 | INFO | test_login | Starting login test
+2026-03-29 08:51:14,518 | INFO | test_login | Navigating to login page
+2026-03-29 08:51:14,864 | INFO | test_login | Logging in with user: hepom13651@devlug.com
+2026-03-29 08:51:15,141 | INFO | test_login | Verifying login success
+2026-03-29 08:51:15,735 | INFO | test_login | Login test passed
+2026-03-29 08:51:15,736 | INFO | conftest | Closing browser
+2026-03-29 08:51:15,801 | INFO | conftest | Starting browser: chrome
+2026-03-29 08:51:16,234 | INFO | conftest | Opening URL: https://demowebshop.tricentis.com
+2026-03-29 08:51:19,356 | INFO | conftest | Closing browser
+2026-03-29 08:51:20,038 | INFO | conftest | Closing browser
