@@ -32,35 +32,64 @@ jobs:
 
       - run: |
           pip install -r requirements.txt
-          pip install pytest-xdist pytest-html pytest-rerunfailures
+          pip install pytest-xdist pytest-rerunfailures
 
       - uses: browser-actions/setup-chrome@v1
-
       - uses: browser-actions/setup-firefox@v1
 
-      - run: |
-          pytest -n 2 --browser=${{ matrix.browser }} --reruns 2 --html=reports/${{ matrix.browser }}-report.html --self-contained-html
+      - name: Run tests
+        run: |
+          pytest -n 2 --browser=${{ matrix.browser }} --reruns 2 --alluredir=allure-results
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload raw results
+        uses: actions/upload-artifact@v4
         with:
-          name: report-${{ matrix.browser }}
-          path: reports/${{ matrix.browser }}-report.html
+          name: allure-results-${{ matrix.browser }}
+          path: allure-results
 
-      - uses: actions/upload-artifact@v4
+  report:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download results
+        uses: actions/download-artifact@v4
         with:
-          name: logs-${{ matrix.browser }}
-          path: logs/
+          path: allure-results
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: screenshots-${{ matrix.browser }}
-          path: screenshots/
+      - name: Merge results
+        run: |
+          mkdir merged-results
+          find allure-results -type f -exec cp {} merged-results/ \;
 
-      - run: |
-          cp reports/${{ matrix.browser }}-report.html reports/index-${{ matrix.browser }}.html
+      - name: Load history
+        run: |
+          if [ -d "allure-history" ]; then
+            cp -r allure-history merged-results/history
+          fi
 
-      - if: always()
+      - name: Install Allure
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jre
+          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.27.0.tgz
+          tar -xzf allure-2.27.0.tgz
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+
+      - name: Generate report
+        run: |
+          allure generate merged-results -o allure-report --clean
+
+      - name: Save history
+        run: |
+          mkdir -p allure-history
+          cp -r allure-report/history/* allure-history || true
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
+          publish_dir: ./allure-report
