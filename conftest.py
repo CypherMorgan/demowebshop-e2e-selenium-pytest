@@ -9,15 +9,21 @@ from config.config_reader import ConfigReader
 logger = get_logger(__name__)
 
 
+def pytest_addoption(parser):
+    parser.addoption("--browser", action="store", default="chrome")
+
+
 @pytest.fixture(scope="function")
-def driver():
+def driver(request):
 
     driver = None
 
     try:
-        logger.info("Starting browser")
+        browser = request.config.getoption("--browser")
 
-        driver = DriverFactory.get_driver()
+        logger.info(f"Starting browser: {browser}")
+
+        driver = DriverFactory.get_driver(browser)
 
         base_url = ConfigReader.get_base_url()
 

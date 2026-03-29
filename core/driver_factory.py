@@ -2,6 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.service import Service as FirefoxService
 
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+
 from config.config_reader import ConfigReader
 import os
 
@@ -9,9 +12,9 @@ import os
 class DriverFactory:
 
     @staticmethod
-    def get_driver():
+    def get_driver(browser=None):
 
-        browser = ConfigReader.get_browser().lower()
+        browser = (browser or ConfigReader.get_browser()).lower()
         headless = ConfigReader.is_headless()
 
         is_ci = os.getenv("CI") == "true"
@@ -27,7 +30,10 @@ class DriverFactory:
             options.add_argument("--disable-dev-shm-usage")
             options.add_argument("--window-size=1920,1080")
 
-            driver = webdriver.Chrome(options=options)
+            driver = webdriver.Chrome(
+                service=ChromeService(ChromeDriverManager().install()),
+                options=options
+            )
 
         elif browser == "firefox":
 
@@ -36,7 +42,10 @@ class DriverFactory:
             if headless or is_ci:
                 options.add_argument("--headless")
 
-            driver = webdriver.Firefox(options=options)
+            driver = webdriver.Firefox(
+                service=FirefoxService(GeckoDriverManager().install()),
+                options=options
+            )
 
         else:
             raise Exception(f"Unsupported browser: {browser}")

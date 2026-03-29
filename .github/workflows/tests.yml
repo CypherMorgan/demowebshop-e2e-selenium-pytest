@@ -8,7 +8,7 @@ env:
   TEST_USERNAME: ${{ secrets.USERNAME }}
   TEST_PASSWORD: ${{ secrets.PASSWORD }}
   HEADLESS: true
-  BROWSER: chrome
+  CI: true
 
 on:
   push:
@@ -19,51 +19,47 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        browser: [chrome, firefox]
+
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: "3.10"
 
-      - name: Install dependencies
-        run: |
+      - run: |
           pip install -r requirements.txt
           pip install pytest-xdist pytest-html pytest-rerunfailures
 
-      - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
+      - uses: browser-actions/setup-chrome@v1
 
-      - name: Run tests
-        run: |
-          pytest -n 2 --html=reports/report.html --self-contained-html
+      - uses: browser-actions/setup-firefox@v1
 
-      - name: Upload report
-        uses: actions/upload-artifact@v4
+      - run: |
+          pytest -n 2 --browser=${{ matrix.browser }} --reruns 2 --html=reports/${{ matrix.browser }}-report.html --self-contained-html
+
+      - uses: actions/upload-artifact@v4
         with:
-          name: test-report
-          path: reports/report.html
+          name: report-${{ matrix.browser }}
+          path: reports/${{ matrix.browser }}-report.html
 
-      - name: Upload logs
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: logs
+          name: logs-${{ matrix.browser }}
           path: logs/
 
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: screenshots
+          name: screenshots-${{ matrix.browser }}
           path: screenshots/
-        
-      - name: Prepare report for Pages
-        run: |
-          cp reports/report.html reports/index.html
 
-      - name: Deploy report to GitHub Pages
-        if: always()
+      - run: |
+          cp reports/${{ matrix.browser }}-report.html reports/index-${{ matrix.browser }}.html
+
+      - if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

@@ -10,7 +10,6 @@ def test_purchase_flow(driver):
 
     home = HomePage(driver)
 
-    # login first
     home.go_to_login()
 
     login = LoginPage(driver)
@@ -19,7 +18,11 @@ def test_purchase_flow(driver):
         ConfigReader.get_password()
     )
 
-    # search product
+    cart = CartPage(driver)
+    cart.go_to_cart()
+    cart.clear_cart()
+
+    home = HomePage(driver)
     home.search_product("computer")
 
     search = SearchPage(driver)
