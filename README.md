@@ -1,4 +1,4 @@
-# Demo Web Shop E2E Automation Framework
+# Hybrid QA Automation Framework (UI + API + CI/CD)
 
 ![Python](https://img.shields.io/badge/python-3.x-blue)
 ![Selenium](https://img.shields.io/badge/selenium-automation-green)
@@ -8,7 +8,15 @@
 [![Allure Report](https://img.shields.io/badge/view-report-blueviolet)](https://cyphermorgan.github.io/demowebshop-e2e-selenium-pytest/)
 ![Tests](https://img.shields.io/badge/tests-e2e-green)
 
-Production-style Selenium automation framework using **Python, PyTest, and Page Object Model**, built with **CI/CD, multi-browser execution, and advanced Allure reporting**.
+Production-style **Hybrid QA Automation Framework** combining:
+
+- UI Automation (Selenium + PyTest)
+- API Testing (Python requests)
+- Postman Collections (Newman)
+- CI/CD (GitHub Actions)
+- Allure Reporting
+
+Designed to simulate **real-world QA workflows** with scalable architecture, environment-driven execution, and stable CI pipelines.
 
 This project demonstrates a **real-world, production-ready test automation framework** for end-to-end testing of the Demo Web Shop application.
 
@@ -26,6 +34,9 @@ This project demonstrates a **real-world, production-ready test automation frame
 * **Page Object Model (POM)**
 * **GitHub Actions (CI/CD)**
 * **Logging Framework**
+* **Requests (API testing)**
+* **Postman + Newman**
+* **Hybrid Testing (UI + API)**
 
 ---
 
@@ -85,16 +96,27 @@ demowebshop-e2e-selenium-pytest
 │   ├── checkout_page.py
 │   └── order_page.py
 │
+├── api_tests
+│   ├── test_login_api.py
+│   └── test_user_api.py
+│
 ├── tests
 │   ├── test_login.py
 │   ├── test_register.py
 │   └── test_purchase_flow.py
 │
+├── tests_hybrid
+│   └── test_ui_api_flow.py
+│
 ├── utils
 │   ├── logger.py
 │   ├── screenshot.py
 │   ├── wait_utils.py
-│   └── data_loader.py
+│   ├── data_loader.py
+│   └── api_client.py
+│
+├── postman
+│   └── collection.json
 │
 ├── reports
 │   ├── logs/
@@ -124,6 +146,10 @@ demowebshop-e2e-selenium-pytest
 * HTML + Allure reporting
 * Retry mechanism for flaky tests
 * Stable execution in headless environments
+* API testing layer with reusable client
+* Hybrid UI + API test flows
+* Postman collection execution via Newman
+* CI-safe API fallback mechanism (no external failures)
 
 ---
 
@@ -153,6 +179,52 @@ demowebshop-e2e-selenium-pytest
 * Add to cart (with retry handling)
 * Proceed to checkout
 * Verify checkout page
+
+---
+
+# 🌐 API Testing
+
+The framework includes a reusable API layer built using `requests`.
+
+### Features:
+* Centralized API client
+* Environment-based API switching
+* Stable execution in CI (httpbin fallback)
+* Positive and negative test coverage
+
+### Example:
+
+```bash
+pytest api_tests
+```
+
+---
+
+# 🔄 Hybrid Testing (UI + API)
+
+Hybrid tests combine API and UI validation in a single flow.
+
+### Example Flow:
+1. Fetch data via API
+2. Use data in UI test
+3. Validate application behavior
+
+### Benefits:
+* End-to-end validation
+* Real-world QA simulation
+* Reduced dependency on UI setup
+
+---
+
+# 📮 Postman Integration
+
+The framework includes a Postman collection executed via Newman.
+
+### Run collection:
+
+```bash
+newman run postman/collection.json
+```
 
 ---
 
@@ -324,6 +396,10 @@ This project includes a fully working CI pipeline.
 * Retry handling for flaky tests
 * Allure report generation and merge job
 * GitHub Pages deployment (live report)
+* API + UI + Hybrid test execution
+* Postman collection execution (Newman)
+* Environment-aware configuration (CI vs local)
+* Stable execution without external API dependency failures
 
 ---
 
@@ -344,10 +420,10 @@ Actions → Latest Run → Artifacts → report.html
 
 # 📌 Future Improvements
 
-* Dockerized test execution
-* Selenium Grid integration
-* API + UI combined testing
-* Test tagging (smoke/regression)
+* Contract testing (schema validation)
+* Mock API server integration
+* Dockerized execution
+* Test data management system
 
 ---
 
