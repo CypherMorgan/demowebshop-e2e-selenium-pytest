@@ -48,15 +48,15 @@ jobs:
 
       - name: Run UI tests
         run: |
-          pytest tests -m smoke -n 2 --browser=${{ matrix.browser }} --reruns 2 --alluredir=allure-results
+          pytest tests -n 2 --browser=${{ matrix.browser }} --reruns 2 --alluredir=allure-results
 
       - name: Run API tests
         run: |
-          pytest api_tests -m smoke --alluredir=allure-results
+          pytest api_tests --alluredir=allure-results
 
       - name: Run Hybrid tests
         run: |
-          pytest tests_hybrid -m smoke --browser=${{ matrix.browser }} --alluredir=allure-results
+          pytest tests_hybrid --browser=${{ matrix.browser }} --alluredir=allure-results
 
       - name: Run Postman collection
         run: |
