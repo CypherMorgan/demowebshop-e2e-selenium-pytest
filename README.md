@@ -1,12 +1,17 @@
 # Hybrid QA Automation Framework (UI + API + CI/CD)
 
-![Python](https://img.shields.io/badge/python-3.x-blue)
+![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![Selenium](https://img.shields.io/badge/selenium-automation-green)
-![PyTest](https://img.shields.io/badge/pytest-testing-orange)
+![PyTest](https://img.shields.io/badge/pytest-framework-orange)
+![API](https://img.shields.io/badge/API-testing-requests-yellow)
+![Postman](https://img.shields.io/badge/Postman-Newman-orange)
+![Hybrid](https://img.shields.io/badge/Hybrid-UI%20%2B%20API-purple)
 ![CI](https://github.com/CypherMorgan/demowebshop-e2e-selenium-pytest/actions/workflows/tests.yml/badge.svg)
+![Allure](https://img.shields.io/badge/Allure-Reporting-blueviolet)
 ![Browsers](https://img.shields.io/badge/browser-chrome%20%7C%20firefox-blue)
-[![Allure Report](https://img.shields.io/badge/view-report-blueviolet)](https://cyphermorgan.github.io/demowebshop-e2e-selenium-pytest/)
-![Tests](https://img.shields.io/badge/tests-e2e-green)
+[![Live Report](https://img.shields.io/badge/Allure-Report-blueviolet)](https://cyphermorgan.github.io/demowebshop-e2e-selenium-pytest/)
+![Status](https://img.shields.io/badge/status-CI%20passing-brightgreen)
+![Framework](https://img.shields.io/badge/framework-production--ready-success)
 
 Production-style **Hybrid QA Automation Framework** combining:
 
