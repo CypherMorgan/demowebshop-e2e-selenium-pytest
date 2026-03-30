@@ -7,4 +7,3 @@ pyyaml
 webdriver-manager
 allure-pytest
 requests
-newman
