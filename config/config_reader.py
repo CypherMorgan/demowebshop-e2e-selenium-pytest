@@ -1,19 +1,19 @@
 import yaml
 import os
 
-@staticmethod
-def get_api_base_url():
-    if os.getenv("CI") == "true":
-        return "https://httpbin.org"
-    return "https://fakestoreapi.com"
 
 class ConfigReader:
 
     _config = None
 
+    @staticmethod
+    def get_api_base_url():
+        if os.getenv("CI") == "true":
+            return "https://httpbin.org"
+        return "https://fakestoreapi.com"
+
     @classmethod
     def load_config(cls):
-
         if cls._config is None:
             path = os.path.join(os.path.dirname(__file__), "config.yaml")
 
@@ -24,7 +24,6 @@ class ConfigReader:
 
     @classmethod
     def get_env_config(cls):
-
         config = cls.load_config()
         env = os.getenv("TEST_ENV", config["environment"])
         return config["environments"][env]
