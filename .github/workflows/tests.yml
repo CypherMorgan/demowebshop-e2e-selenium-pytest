@@ -48,7 +48,7 @@ jobs:
 
       - name: Run UI tests
         run: |
-          pytest tests -n 2 --browser=${{ matrix.browser }} --reruns 2 --alluredir=allure-results
+          pytest tests --browser=${{ matrix.browser }} --reruns 2 --alluredir=allure-results
 
       - name: Run API tests
         run: |
