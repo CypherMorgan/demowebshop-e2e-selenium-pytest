@@ -1,6 +1,11 @@
 import yaml
 import os
 
+@staticmethod
+def get_api_base_url():
+    if os.getenv("CI") == "true":
+        return "https://httpbin.org"
+    return "https://fakestoreapi.com"
 
 class ConfigReader:
 
