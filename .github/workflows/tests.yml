@@ -35,11 +35,13 @@ jobs:
           pip install -r requirements.txt
           pip install pytest-xdist pytest-rerunfailures
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+            node-version: "18"
+
       - name: Install Newman
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y nodejs npm
-          npm install -g newman
+        run: npm install -g newman      
 
       - uses: browser-actions/setup-chrome@v1
       - uses: browser-actions/setup-firefox@v1
