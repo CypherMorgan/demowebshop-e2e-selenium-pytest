@@ -6,3 +6,5 @@ pytest-rerunfailures
 pyyaml
 webdriver-manager
 allure-pytest
+requests
+newman

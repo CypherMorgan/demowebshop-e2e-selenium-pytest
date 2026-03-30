@@ -30,16 +30,35 @@ jobs:
         with:
           python-version: "3.10"
 
-      - run: |
+      - name: Install dependencies
+        run: |
           pip install -r requirements.txt
           pip install pytest-xdist pytest-rerunfailures
+
+      - name: Install Newman
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y nodejs npm
+          npm install -g newman
 
       - uses: browser-actions/setup-chrome@v1
       - uses: browser-actions/setup-firefox@v1
 
-      - name: Run tests
+      - name: Run UI tests
         run: |
-          pytest -n 2 --browser=${{ matrix.browser }} --reruns 2 --alluredir=allure-results
+          pytest tests -m smoke -n 2 --browser=${{ matrix.browser }} --reruns 2 --alluredir=allure-results
+
+      - name: Run API tests
+        run: |
+          pytest api_tests -m smoke --alluredir=allure-results
+
+      - name: Run Hybrid tests
+        run: |
+          pytest tests_hybrid -m smoke --browser=${{ matrix.browser }} --alluredir=allure-results
+
+      - name: Run Postman collection
+        run: |
+          newman run postman/collection.json
 
       - name: Upload raw results
         uses: actions/upload-artifact@v4

@@ -31,4 +31,7 @@ class BasePage:
             return element.is_displayed()
         except:
             return False
-
+        
+    def open(self, path=""):
+        base_url = ConfigReader.get_base_url()
+        self.driver.get(f"{base_url}{path}")
