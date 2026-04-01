@@ -3,7 +3,6 @@
 ![Python](https://img.shields.io/badge/python-3.10+-blue)
 ![Selenium](https://img.shields.io/badge/selenium-automation-green)
 ![PyTest](https://img.shields.io/badge/pytest-framework-orange)
-![API](https://img.shields.io/badge/API-testing-requests-yellow)
 ![Postman](https://img.shields.io/badge/Postman-Newman-orange)
 ![Hybrid](https://img.shields.io/badge/Hybrid-UI%20%2B%20API-purple)
 ![CI](https://github.com/CypherMorgan/demowebshop-e2e-selenium-pytest/actions/workflows/tests.yml/badge.svg)
